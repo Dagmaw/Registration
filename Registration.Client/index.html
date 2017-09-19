@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Station Users Directory</title>
+
+    <!-- Style sheets -->
+    <link href="Content/app.css" rel="stylesheet" />
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="Content/toastr.css" rel="stylesheet" />
+
+    <!--Library scrips -->
+    <script src="Scripts/jquery.js"></script>
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/angular-resource.js"></script>
+    <script src="Scripts/angular-mocks.js"></script>
+    <script src="Scripts/angular-ui-router.js"></script>
+    <script src="Scripts/bootstrap.js"></script>
+    <script src="Scripts/ui-utils.js"></script>
+    <script src="Scripts/ui-bootstrap-tpls-0.11.0.js"></script>
+    <script src="Scripts/toastr.js"></script>
+    <script src="Scripts/d3.js"></script>
+    <script src="Scripts/angular-charts.min.js"></script>
+    <script src="Scripts/angular-ui-router.min.js"></script>
+
+    <!-- Application scripts -->
+    <script src="app/app.js"></script>
+
+    <!-- Services -->
+    <script src="common/services/common.services.js"></script>
+    <script src="common/services/registrationResource.js"></script>
+    <script src="common/services/registrationResourceMock.js"></script>
+    <script src="common/services/registrationService.js"></script>
+
+    <!-- register Controllers -->
+    <script src="app/register/RegistrationListCtrl.js"></script>
+    <script src="app/register/RegistrationEditCtrl.js"></script>
+    <script src="app/register/RegistrationReportCtrl.js"></script>
+    <script src="app/register/RegistrationDetailCtrl.js"></script>
+
+</head>
+<body ng-app="stationManagement">
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <a class="navbar-brand"
+               ui-sref="home">SSO Directory</a>
+            <div class="navbar-header">
+                <button type="button"
+                        class="navbar-toggle"
+                        data-toggle="collapse"
+                        data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a ui-sref="registrationList">Registered Users</a></li>
+                    <li>
+                        <a ui-sref="registrationEdit.user({registrationId:0})">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            Register
+                        </a>
+                    </li>
+                    <li><a ui-sref="RegistrationReport">Report</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div ui-view></div>
+    </div>
+
+</body>
+</html>

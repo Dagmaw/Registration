@@ -1,0 +1,101 @@
+<form class="form-horizontal" name="groupForm" novalidate>
+    <fieldset>
+        <div class="form-group"
+             ng-class="{'has-error':groupForm.firstName.$invalid &&
+                                    groupForm.firstName.$dirty}">
+            <label class="col-md-2 control-label"
+                   for="firstName">Organization Name</label>
+
+            <div class="col-md-4">
+                <input class="form-control"
+                       id="organizationName"
+                       name="organizationName"
+                       type="text"
+                       placeholder="Organization Name (required)"
+                       ng-model="vm.product.productName"
+                       required
+                       ng-minlength="4"
+                       ng-maxlength="12" />
+            </div>
+            <span class="help-block has-error">
+                <span ng-show="groupForm.organizationName.$error.required">
+                    Organization Name is required.
+                </span>
+
+            </span>
+        </div>
+        <div class="form-group"
+             ng-class="{'has-error':groupForm.callLetter.$invalid &&
+                                    groupForm.callLetter.$dirty}">
+            <label class="col-md-2 control-label"
+                   for="firstName">Call Letter</label>
+
+            <div class="col-md-4">
+                <input class="form-control"
+                       id="callLetter"
+                       name="callLetter"
+                       type="text"
+                       placeholder="Call Letter (required)"
+                       ng-model="vm.product.productName"
+                       required
+                       ng-minlength="4"
+                       ng-maxlength="12" />
+            </div>
+            <span class="help-block has-error">
+                <span ng-show="groupForm.callLetter.$error.required">
+                    Call Letter is required.
+                </span>
+
+            </span>
+        </div>
+       
+        <div class="form-group"
+             ng-if="vm.priceOption=='percent'"
+             ng-class="{'has-error': groupForm.inputMarkupPercent.$invalid &&
+                                     groupForm.inputMarkupPercent.$dirty}">
+            <div class="col-md-6 col-md-offset-2">
+                <label class="control-label"
+                       for="inputMarkupPercent">Select App</label>
+                <div class="form-group row"
+                     style="margin-bottom:0;">
+                    <div class="col-md-4">
+                        <input class="form-control"
+                               id="inputMarkupPercent"
+                               name="inputMarkupPercent"
+                               type="text"
+                               placeholder="Please Select"
+                               ng-model="vm.markupPercent"
+                               style="text-align:right" />
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button"
+                                class="btn btn-primary"
+                                title="Calculate the price based on the code plus % markup">
+                            Generate Group Name
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+
+        <div class="form-group">
+            <div class="col-md-4 col-md-offset-2">
+                <span>
+                    <button class="btn btn-primary"
+                            style="width:80px;margin-right:10px"
+                            type="submit">
+                        Previous
+                    </button>
+                </span>
+                <span>
+                    <button class="btn btn-primary"
+                            style="width:70px">
+                        Next
+                    </button>
+                </span>
+            </div>
+        </div>
+    </fieldset>
+</form>

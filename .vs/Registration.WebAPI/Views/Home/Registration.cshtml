@@ -1,0 +1,203 @@
+﻿
+@{
+    ViewBag.Title = "Registration";
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+@section scripts{
+<link href="~/Content/CustomStyle.css" rel="stylesheet" />
+<script src="~/Scripts/angular.js"></script>   
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>  
+<script src="~/Scripts/AngularDemo.js"></script>    
+    }
+<div ng-app="demoModule" id="body">
+    <div ng-controller="demoCtrl">
+        <h2>Stations User Management App </h2>
+        <h3>List of Registered Users</h3>
+        <table ng-cloak>
+            <thead>
+                <tr>
+                    <th style="display:none">RegistrationId</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Login</th>
+                    <th>Organization</th>
+                    <th style="display:none">Question</th>
+                    <th style="display:none">Answer</th>
+                    <th style="display:none">Password</th>
+                    <th>GroupName</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="profile in registrationsData">
+                    <td hidden="hidden">{{profile.RegistrationId}}</td>
+                    <td>{{profile.FirstName}}</td>
+                    <td>{{profile.LastName}}</td>
+                    <td>{{profile.Email}}</td>
+                    <td>{{profile.Login}}</td>
+                    <td>{{profile.Organization}}</td>
+                    <td hidden="hidden">{{profile.Question}}</td>
+                    <td hidden="hidden">{{profile.Answer}}</td>
+                    <td hidden="hidden">{{profile.Password}}</td>
+                    <td>{{profile.GroupName}}</td>
+                    <td>
+                        <button ng-model="$scope.Registration" ng-click="edit(registrationsData[$index])">Edit</button>
+                        <button ng-click="delete($index)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>       
+        <div ng-show="Registration.RegistrationId != ''">
+            <div>
+                <h2>Update their Profile</h2>
+            </div>
+            <div hidden="hidden">
+                <label for="RegistrationId">RegistrationId</label>
+                <input type="text" data-ng-model="Registration.RegistrationId" />
+            </div>
+            <div>
+                <label for="FirstName">FirstName</label>
+                <input type="text" data-ng-model="Registration.FirstName" />
+            </div>
+            <div>
+                <label for="LastName">LastName</label>
+                <input type="text" data-ng-model="Registration.LastName" />
+            </div>
+            <div>
+                <label for="Email">Email</label>
+                <input type="email" data-ng-model="Registration.Email" />
+            </div>
+            <div>
+                <label for="Login">Login</label>
+                <input type="email" data-ng-model="Registration.Login" />
+            </div>
+            <div>
+                <label for="Organization">Organization</label>
+                <input type="text" data-ng-model="Registration.Organization" />
+            </div>
+            <div>
+                <label for="Question">Question</label>
+                <input type="text" data-ng-model="Registration.Question" />
+            </div>
+            <div>
+                <label for="Answer">Answer</label>
+                <input type="text" data-ng-model="Registration.Answer" />
+            </div>
+            <div>
+                <label for="Password">Password</label>
+                <input type="password" data-ng-model="Registration.Password" />
+            </div>
+            <div>
+                <label for="GroupName">GroupName</label>
+                <input type="text" data-ng-model="Registration.GroupName" />
+            </div>
+            <br />
+            <div>
+                <button data-ng-click="update()">Update</button>
+                <button data-ng-click="cancel()">Cancel</button>
+            </div>
+        </div>
+        <div ng-hide="Registration.RegistrationId != ''">
+            <div>
+                <h2> Register New User</h2>
+            </div>
+            <div>
+                <label for="FirstName">FirstName</label>
+                <input type="text" data-ng-model="Registration.FirstName" />
+            </div>
+            <div>
+                <label for="LastName">LastName</label>
+                <input type="text" data-ng-model="Registration.LastName" />
+            </div>
+            <div>
+                <label for="Email">Email</label>
+                <input type="email" data-ng-model="Registration.Email" />
+            </div>
+            <div>
+                <label for="Login">Login</label>
+                <input type="email" data-ng-model="Registration.Login" />
+            </div>
+            <div>
+                <label for="Organization">Organization</label>
+                <input type="text" data-ng-model="Registration.Organization" />
+            </div>
+            <div>
+                <label for="Question">Question</label>
+                <input type="text" data-ng-model="Registration.Question" />
+            </div>
+            <div>
+                <label for="Answer">Answer</label>
+                <input type="text" data-ng-model="Registration.Answer" />
+            </div>
+            <div>
+                <label for="Password">Password</label>
+                <input type="password" data-ng-model="Registration.Password" />
+            </div>
+            <div>
+                <label for="GroupName">GroupName</label>
+                <input type="text" data-ng-model="Registration.GroupName" />
+            </div>
+            <br />
+            <div>
+                <button data-ng-click="save()">Register</button>
+                <button data-ng-click="clear()">Clear</button>
+            </div>
+        </div>
+        <div ng-hide="Registration.RegistrationId != ''">
+            <div>
+                <h2>Register New Users From CSV</h2>
+            </div>
+            <div>
+                <label for="FileName">UploadFile</label>
+                <input type="file" />
+            </div>     
+            <br />
+            <div>
+                <button data-ng-click="#">Register</button>
+                <button data-ng-click="#">Clear</button>
+            </div>
+        </div>
+        <h3>List of Users From CSV </h3>
+        <table ng-cloak>
+            <thead>
+                <tr>
+                    <th style="display:none">RegistrationId</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Login</th>
+                    <th>Organization</th>
+                    <th style="display:none">Question</th>
+                    <th style="display:none">Answer</th>
+                    <th style="display:none">Password</th>
+                    <th>GroupName</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="profile in registrationsData">
+                    <td hidden="hidden">{{profile.RegistrationId}}</td>
+                    <td>{{profile.FirstName}}</td>
+                    <td>{{profile.LastName}}</td>
+                    <td>{{profile.Email}}</td>
+                    <td>{{profile.Login}}</td>
+                    <td>{{profile.Organization}}</td>
+                    <td hidden="hidden">{{profile.Question}}</td>
+                    <td hidden="hidden">{{profile.Answer}}</td>
+                    <td hidden="hidden">{{profile.Password}}</td>
+                    <td>{{profile.GroupName}}</td>
+                    <td>
+                        <button ng-model="$scope.Registration" ng-click="edit(registrationsData[$index])">Edit</button>
+                        <button ng-click="delete($index)">Approve</button>
+                        <button ng-model="$scope.Registration" ng-click="edit(registrationsData[$index])">Deny</button>
+                        <button ng-click="delete($index)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+
